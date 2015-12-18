@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
 
 namespace PM25onWinPhone.Utils
 {
@@ -209,7 +212,8 @@ namespace PM25onWinPhone.Utils
             using (StreamReader reader = new StreamReader(stream))
             {
                 string content = reader.ReadToEnd();
-                System.Diagnostics.Debug.WriteLine(content);
+                List<SiteDetail> sites = JsonConvert.DeserializeObject<List<SiteDetail>>(content);
+                System.Diagnostics.Debug.WriteLine(sites[0].aqi);
             }
      }
        //获取数据
