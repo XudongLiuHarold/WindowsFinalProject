@@ -10,15 +10,15 @@ using Microsoft.Phone.Shell;
 
 namespace WindowsProject
 {
-    public partial class WindowsPhoneControl4 : UserControl
+    public partial class WindowsPhoneControl5 : UserControl
     {
-         public WindowsPhoneControl4()
+        public WindowsPhoneControl5()
         {
             InitializeComponent();
             Loaded += new RoutedEventHandler(MainPage_Loaded);
-           
 
         }
+
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             GetPersons personInst = GetPersons.getPersonInst();

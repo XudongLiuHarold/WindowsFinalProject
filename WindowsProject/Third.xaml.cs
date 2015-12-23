@@ -24,7 +24,7 @@ namespace WindowsProject
 
             UserControlList = new List<UserControl>()
             {
-                new WindowsPhoneControl1(),
+                new WindowsPhoneControl4(),
                 new WindowsPhoneControl2(),
                 new WindowsPhoneControl3()
             };

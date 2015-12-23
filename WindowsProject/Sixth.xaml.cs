@@ -24,10 +24,10 @@ namespace WindowsProject
             //创建三个页面列表  
             this.PageList = new List<UserControl>()   
                 {   
-                    new WindowsPhoneControl1() { IsEnabled = false },   
+                    new WindowsPhoneControl5() { IsEnabled = false },   
                     new WindowsPhoneControl2() { IsEnabled = false },   
                     new WindowsPhoneControl3() { IsEnabled = false },
-                    new WindowsPhoneControl4() { IsEnabled = false }   
+                    new WindowsPhoneControl1() { IsEnabled = false }   
                 };  
               
             this.CurrentPageIndex = 0;  
@@ -84,6 +84,8 @@ namespace WindowsProject
             personInst.addPersons(new Person("Andy", "Mgee", index));
             personInst.addPersons(new Person("Andy", "Mgee", index));
             personInst.addPersons(new Person("Andy", "Mgee", index));
+            personInst.addPersons(new Person("Wang", "Mgee", index));
+            personInst.addPersons(new Person("Wang", "Mgee", index));
             personInst.City = "City" + index;
   
             //滑dao第一页再向左滑动  
@@ -135,7 +137,17 @@ namespace WindowsProject
             {
                 if (this.CurrentPageIndex == 0)
                 {
-                    MessageBox.Show("now is first item");
+                    //MessageBox.Show("now is first item");
+                    CurrentPageIndex = 2;
+                    this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
+                    this.PageChangeAnimation.Begin();
+                    this.LoadPages();
+
+                    this.PanoramaContentTranslate.X += (PageWidth * -1);
+
+                    this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
+
+                    this.PageChangeAnimation.Begin();
                 }
                 else 
                 {
@@ -159,7 +171,17 @@ namespace WindowsProject
             {
                 if (this.CurrentPageIndex == 2)
                 {
-                    MessageBox.Show("now is end item");
+                    //MessageBox.Show("now is end item");
+                    CurrentPageIndex = 0;
+                    this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
+                    this.PageChangeAnimation.Begin();
+                    this.LoadPages();
+
+                    this.PanoramaContentTranslate.X += (PageWidth * 1);
+
+                    this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
+
+                    this.PageChangeAnimation.Begin();
 
                 }
                 else

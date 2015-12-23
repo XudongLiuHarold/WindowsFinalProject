@@ -9,13 +9,12 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot" Background="Coral" Margin="0,0,-23,-23">
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="title" Text="ShangHai" HorizontalAlignment="Center" Margin="10,-7,104,0" Style="{StaticResource PhoneTextTitle1Style}" Height="93"/>
+
+    <Grid x:Name="LayoutRoot" Background="Bisque" Margin="0,0,0,-23">
+        <StackPanel Grid.Row="0" Margin="2,0,10,29">
+            <TextBlock x:Name="title" Text="ShangHai" FontSize="60" TextAlignment="Center" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
             <!--<TextBlock Text="我的应用程序" Style="{StaticResource PhoneTextNormalStyle}"/>-->
         </StackPanel>
-        <TextBlock Text="Page Three" Margin="0,0,10,115"/>
 
         <ListBox x:Name="PeopleListBox" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,110,0,0">
             <ListBox.ItemTemplate>

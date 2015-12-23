@@ -23,6 +23,7 @@ namespace WindowsProject
             GetPersons personInst = GetPersons.getPersonInst();
 
             PeopleListBox.ItemsSource = personInst.getPersonList();
+            //PeopleListBox1.ItemsSource = personInst.getPersonList();
             title.Text = personInst.City;
         }
 
@@ -36,5 +37,6 @@ namespace WindowsProject
 
             PeopleListBox.SelectedIndex = -1;
         }
+        
     }
 }

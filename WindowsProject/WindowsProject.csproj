@@ -136,6 +136,9 @@
     <Compile Include="WindowsPhoneControl4.xaml.cs">
       <DependentUpon>WindowsPhoneControl4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsPhoneControl5.xaml.cs">
+      <DependentUpon>WindowsPhoneControl5.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -183,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsPhoneControl4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsPhoneControl5.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

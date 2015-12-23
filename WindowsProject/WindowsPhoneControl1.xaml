@@ -3,18 +3,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot" Background="YellowGreen">
+
+    <Grid x:Name="LayoutRoot" Background="GreenYellow"  Margin="0,0,0,10">
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="title" Text="上海" HorizontalAlignment="Center" Margin="120,-7,104,0" Style="{StaticResource PhoneTextTitle1Style}" Height="93"/>
+            <TextBlock x:Name="title" Text="ShangHai" FontSize="60" TextAlignment="Center" Margin="10,-7,10,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
             <!--<TextBlock Text="我的应用程序" Style="{StaticResource PhoneTextNormalStyle}"/>-->
         </StackPanel>
-        <ListBox x:Name="PeopleListBox" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,127,0,-132">
+        <ListBox x:Name="PeopleListBox" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,127,0,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -31,6 +32,29 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
     </Grid>
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <!-- 以下为从Page2 页面按Back 按键跳回MainPage 时的效果-->
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SwivelTransition Mode="FullScreenIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <!-- 以下为从Page2 页面跳回MainPage 时的效果-->
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SwivelTransition Mode="FullScreenIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <!-- 以下为从MainPage页按Back按键跳出（程序退出）时的效果-->
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <!-- 以下为从MainPage 跳转到Page2 时的效果-->
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
 </UserControl>

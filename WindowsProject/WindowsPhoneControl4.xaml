@@ -3,13 +3,67 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
 
+    <Grid x:Name="LayoutRoot" Background="Black"  Margin="0,0,0,10">
+        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="title" Text="ShangHai" FontSize="60" TextAlignment="Center" Margin="10,-7,10,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
+            <!--<TextBlock Text="我的应用程序" Style="{StaticResource PhoneTextNormalStyle}"/>-->
+        </StackPanel>
+        <ScrollViewer x:Name="ContentGrid" Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+            <StackPanel Background="Transparent" Orientation="Horizontal"  Margin="12,85,0,28" >
+                <!--Adding various controls and UI elements.-->
+                <!--<Rectangle Width="100" Height="50" Margin="12,0" HorizontalAlignment="Left" Fill="{StaticResource PhoneAccentBrush}"/>
+                <Rectangle Width="100" Height="50" HorizontalAlignment="Center" Fill="{StaticResource PhoneAccentBrush}"/>
+                <Rectangle Width="100" Height="50" Margin="12,0" HorizontalAlignment="Right" Fill="{StaticResource PhoneAccentBrush}"/>-->
+                <ItemsControl x:Name="PeopleListBox1">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="ItemsControl">
+                            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"  ScrollViewer.VerticalScrollBarVisibility ="Disabled">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Width="55" Text="{Binding FirstName}"></TextBlock>
+                                <TextBlock Width="55" Text="{Binding LastName}"></TextBlock>
+                                <TextBlock Width="55" Text="{Binding Age}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        <ListBox x:Name="PeopleListBox" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,197,0,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Content="{Binding FirstName}" />
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastName}" />
+                        <TextBlock Grid.Column="2" Text="{Binding Age}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
+    
+      
 </UserControl>
