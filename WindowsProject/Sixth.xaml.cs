@@ -11,12 +11,16 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
+using PM25onWinPhone.Utils;
+using PM25onWinPhone.Entity;
+
 namespace WindowsProject
 {
     public partial class Sixth : PhoneApplicationPage
     {
        
         public const int PageWidth = 480;
+        SharedNetwork network = SharedNetwork.sharedNetwork();
         GetPersons personInst = GetPersons.getPersonInst();
         public Sixth()
         {  
@@ -48,7 +52,9 @@ namespace WindowsProject
         protected int CurrentPageIndex { get; set; }  
   
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)  
-        {  
+        {
+            SharedNetwork network = SharedNetwork.sharedNetwork();
+
             var frame = (PhoneApplicationFrame)Application.Current.RootVisual;  
             frame.Width = PageWidth * 3;  
   
@@ -86,7 +92,10 @@ namespace WindowsProject
             personInst.addPersons(new Person("Andy", "Mgee", index));
             personInst.addPersons(new Person("Wang", "Mgee", index));
             personInst.addPersons(new Person("Wang", "Mgee", index));
-            personInst.City = "City" + index;
+            
+ //           network.getCityAir("上海市");
+           // CityAir theCityAir = network.theCityAir;
+            personInst.City = "City" +" "+index;
   
             //滑dao第一页再向左滑动  
             if (CurrentPageIndex == -1)  

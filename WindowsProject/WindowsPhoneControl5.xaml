@@ -14,8 +14,8 @@
             <TextBlock x:Name="title" Text="ShangHai" FontSize="60" TextAlignment="Center" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
             <!--<TextBlock Text="我的应用程序" Style="{StaticResource PhoneTextNormalStyle}"/>-->
         </StackPanel>
-        <ListBox x:Name="PeopleListBox" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
-                 ScrollViewer.VerticalScrollBarVisibility = "Disabled" Margin="0,100,6.847,392" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+        <ListBox x:Name="CityListBox" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                 ScrollViewer.VerticalScrollBarVisibility = "Disabled" Margin="0.115,100,11.462,590" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
             <ListBox.RenderTransform>
                 <CompositeTransform SkewX="1.26" TranslateX="1.1"/>
             </ListBox.RenderTransform>
@@ -41,15 +41,15 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Width="55" Grid.Row="0" Text="{Binding FirstName}"></TextBlock>
-                            <TextBlock Width="55" Grid.Row="1" Text="{Binding LastName}"></TextBlock>
-                            <TextBlock Width="55" Grid.Row="2" Text="{Binding Age}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="0" Text="{Binding PositionName}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="1" Text="{Binding PM2_5_24h}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="2"  Text="{Binding Unheathful}"></TextBlock>
                         </Grid>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="PeopleListBox1" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,242,36,0">
+        <ListBox x:Name="CityListBox1" SelectionChanged="CityListBox_SelectionChanged" Margin="0,242,36,0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -61,7 +61,7 @@
 
                         <Button Grid.Column="0" Content="{Binding FirstName}" />
                         <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastName}" />
-                        <TextBlock Grid.Column="2" Text="{Binding Age}" />
+                        <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Age}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
