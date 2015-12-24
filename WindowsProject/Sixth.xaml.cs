@@ -12,7 +12,8 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 
 using PM25onWinPhone.Utils;
-using PM25onWinPhone.Entity;
+using Entity;
+using Utils;
 
 namespace WindowsProject
 {

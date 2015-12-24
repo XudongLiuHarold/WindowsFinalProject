@@ -10,8 +10,7 @@ using Microsoft.Phone.Shell;
 using WindowsProject.Resources;
 using System.Windows.Input;
 using System.Windows.Media;
-using PM25onWinPhone.Utils;
-using PM25onWinPhone.Entity;
+using Utils;
 
 namespace WindowsProject
 {

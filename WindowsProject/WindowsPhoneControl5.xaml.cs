@@ -8,6 +8,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using PM25onWinPhone.Utils;
+using Utils;
+
 namespace WindowsProject
 {
     public partial class WindowsPhoneControl5 : UserControl
@@ -20,14 +22,14 @@ namespace WindowsProject
 
         }
 
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             GetPersons personInst = GetPersons.getPersonInst();
             SharedNetwork network = SharedNetwork.sharedNetwork();
             CityListBox.ItemsSource = personInst.getPersonList();
             CityListBox1.ItemsSource = personInst.getPersonList();
-            network.getSationAir("上海市");
-            
+            await network.getSationAir("上海市");
+
             System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data[0].PositionName);
             title.Text = personInst.City;
         }
