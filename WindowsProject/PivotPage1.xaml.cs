@@ -16,6 +16,7 @@ namespace WindowsProject
         public PivotPage1()
         {
             InitializeComponent();
+      
         }
 
         private void textClick(object sender, MouseButtonEventArgs e)
@@ -26,6 +27,7 @@ namespace WindowsProject
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WindowsProject.Resources;
+using Utils;
 
 namespace WindowsProject
 {
@@ -59,8 +60,10 @@ namespace WindowsProject
 
         // 应用程序启动(例如，从“开始”菜单启动)时执行的代码
         // 此代码在重新激活应用程序时不执行
-        private void Application_Launching(object sender, LaunchingEventArgs e)
+        private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            SharedNetwork network = SharedNetwork.sharedNetwork();
+            await network.initCites();
         }
 
         // 激活应用程序(置于前台)时执行的代码

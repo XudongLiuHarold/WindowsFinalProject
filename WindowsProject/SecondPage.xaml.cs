@@ -20,6 +20,8 @@ namespace WindowsProject
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs args)
         {
+            System.Diagnostics.Debug.WriteLine("Test faster than networking?");
+
             IDictionary<string, string> parameters = this.NavigationContext.QueryString;
             if (parameters.ContainsKey("parameter1"))
             {
