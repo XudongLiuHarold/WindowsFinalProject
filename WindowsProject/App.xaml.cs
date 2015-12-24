@@ -7,7 +7,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WindowsProject.Resources;
-
+using PM25onWinPhone.Utils;
 namespace WindowsProject
 {
     public partial class App : Application
@@ -17,6 +17,8 @@ namespace WindowsProject
         /// </summary>
         /// <returns>电话应用程序的根框架。</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
+        SharedNetwork network = SharedNetwork.sharedNetwork();
+
 
         /// <summary>
         /// Application 对象的构造函数。

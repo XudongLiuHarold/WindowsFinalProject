@@ -7,11 +7,12 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-
+using PM25onWinPhone.Utils;
 namespace WindowsProject
 {
     public partial class WindowsPhoneControl5 : UserControl
     {
+        
         public WindowsPhoneControl5()
         {
             InitializeComponent();
@@ -22,21 +23,24 @@ namespace WindowsProject
         void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             GetPersons personInst = GetPersons.getPersonInst();
-
-            PeopleListBox.ItemsSource = personInst.getPersonList();
-            PeopleListBox1.ItemsSource = personInst.getPersonList();
+            SharedNetwork network = SharedNetwork.sharedNetwork();
+            CityListBox.ItemsSource = personInst.getPersonList();
+            CityListBox1.ItemsSource = personInst.getPersonList();
+            network.getSationAir("上海市");
+            
+            System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data[0].PositionName);
             title.Text = personInst.City;
         }
 
-        private void PeopleListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CityListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (PeopleListBox.SelectedIndex == -1)
+            if (CityListBox.SelectedIndex == -1)
                 return;
 
             Person selectedPerson = ((sender as ListBox).SelectedItem as Person);
             MessageBox.Show("ListBox selected: " + selectedPerson);
 
-            PeopleListBox.SelectedIndex = -1;
+            CityListBox.SelectedIndex = -1;
         }
     }
 }

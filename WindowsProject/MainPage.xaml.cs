@@ -10,16 +10,23 @@ using Microsoft.Phone.Shell;
 using WindowsProject.Resources;
 using System.Windows.Input;
 using System.Windows.Media;
+using PM25onWinPhone.Utils;
+using PM25onWinPhone.Entity;
 
 namespace WindowsProject
 {
     public partial class MainPage : PhoneApplicationPage
     {
         // 构造函数
-       
+
+
         public MainPage()
         {
+
+            SharedNetwork network = SharedNetwork.sharedNetwork();
             InitializeComponent();
+           // network.getCityAir("上海市");
+           // CityAir theCityAir = network.theCityAir;
            
           //  btn.SetValue(Grid.RowProperty, 0);
            // btn.SetValue(Grid.ColumnProperty, 1);

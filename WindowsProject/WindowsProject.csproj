@@ -94,6 +94,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Entity\CiteStationAir.cs" />
+    <Compile Include="Entity\City.cs" />
+    <Compile Include="Entity\CityAir.cs" />
+    <Compile Include="Entity\CityDetail.cs" />
+    <Compile Include="Entity\CityRanking.cs" />
     <Compile Include="Fifth.xaml.cs">
       <DependentUpon>Fifth.xaml</DependentUpon>
     </Compile>
@@ -124,6 +129,7 @@
     <Compile Include="Third.xaml.cs">
       <DependentUpon>Third.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utils\SharedNetwork.cs" />
     <Compile Include="WindowsPhoneControl1.xaml.cs">
       <DependentUpon>WindowsPhoneControl1.xaml</DependentUpon>
     </Compile>
@@ -240,6 +246,13 @@
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\packages\WPtoolkit.4.2013.08.16\lib\wp8\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Json70r1\Bin\Portable\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
