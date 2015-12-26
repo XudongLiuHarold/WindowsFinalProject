@@ -41,9 +41,9 @@
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Width="55" Grid.Row="0" Text="{Binding PositionName}"></TextBlock>
-                            <TextBlock Width="55" Grid.Row="1" Text="{Binding PM2_5_24h}"></TextBlock>
-                            <TextBlock Width="55" Grid.Row="2"  Text="{Binding Unheathful}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="0" Text="{Binding FirstName}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="1" Text="{Binding FirstName}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="2"  Text="{Binding FirstName}"></TextBlock>
                         </Grid>
                     </Grid>
                 </DataTemplate>

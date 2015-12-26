@@ -30,7 +30,7 @@ namespace WindowsProject
             CityListBox1.ItemsSource = personInst.getPersonList();
             await network.getSationAir("上海市");
 
-            System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data[0].PositionName);
+            System.Diagnostics.Debug.WriteLine("testing await");
             title.Text = personInst.City;
         }
 
