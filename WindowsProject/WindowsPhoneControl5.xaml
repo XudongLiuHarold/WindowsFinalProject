@@ -44,11 +44,17 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
+<<<<<<< HEAD
                             <TextBlock  Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"  Text="{Binding PositionName}"></TextBlock>
                             <TextBlock  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Text="AQI: "></TextBlock>
                             <TextBlock  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Text="{Binding AQI}"></TextBlock>
                             <!-- <TextBlock Width="50" Grid.Row="1" Text="PM2.5: "></TextBlock>-->
                             <TextBlock  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Text="{Binding Quality}"></TextBlock>
+=======
+                            <TextBlock Width="55" Grid.Row="0" Text="{Binding FirstName}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="1" Text="{Binding FirstName}"></TextBlock>
+                            <TextBlock Width="55" Grid.Row="2"  Text="{Binding FirstName}"></TextBlock>
+>>>>>>> c934e4a46ebfb9e785488de5d6cbe85fc5abb844
                         </Grid>
                     </Grid>
                 </DataTemplate>

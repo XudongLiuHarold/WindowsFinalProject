@@ -12,11 +12,15 @@ using Utils;
 using Controls;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c934e4a46ebfb9e785488de5d6cbe85fc5abb844
 namespace WindowsProject
 {
     public partial class WindowsPhoneControl5 : UserControl
     {
+<<<<<<< HEAD
         static Dictionary<int, List<DataForBinding>> hashMap = new Dictionary<int, List<DataForBinding>>();
         AllData allData = AllData.getAllData();
         List<string> cityLists = new List<string>();
@@ -227,5 +231,37 @@ namespace WindowsProject
         }
 
      
+=======
+        
+        public WindowsPhoneControl5()
+        {
+            InitializeComponent();
+            Loaded += new RoutedEventHandler(MainPage_Loaded);
+
+        }
+
+        async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            GetPersons personInst = GetPersons.getPersonInst();
+            SharedNetwork network = SharedNetwork.sharedNetwork();
+            CityListBox.ItemsSource = personInst.getPersonList();
+            CityListBox1.ItemsSource = personInst.getPersonList();
+            await network.getSationAir("上海市");
+
+            System.Diagnostics.Debug.WriteLine("testing await");
+            title.Text = personInst.City;
+        }
+
+        private void CityListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CityListBox.SelectedIndex == -1)
+                return;
+
+            Person selectedPerson = ((sender as ListBox).SelectedItem as Person);
+            MessageBox.Show("ListBox selected: " + selectedPerson);
+
+            CityListBox.SelectedIndex = -1;
+        }
+>>>>>>> c934e4a46ebfb9e785488de5d6cbe85fc5abb844
     }
 }
