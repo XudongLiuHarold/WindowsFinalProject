@@ -33,28 +33,5 @@
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <!-- 以下为从Page2 页面按Back 按键跳回MainPage 时的效果-->
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SwivelTransition Mode="FullScreenIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <!-- 以下为从Page2 页面跳回MainPage 时的效果-->
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SwivelTransition Mode="FullScreenIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <!-- 以下为从MainPage页按Back按键跳出（程序退出）时的效果-->
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <!-- 以下为从MainPage 跳转到Page2 时的效果-->
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
+   
 </UserControl>

@@ -41,33 +41,13 @@
          -->
 
         <!--TitlePanel 包含应用程序的名称和页标题-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <phone:Pivot HorizontalAlignment="Left" Height="174" Title="" VerticalAlignment="Top" Width="432">
-                <phone:PivotItem CacheMode="{x:Null}" Header="item1">
-                    <Grid/>
-                </phone:PivotItem>
-                <phone:PivotItem CacheMode="{x:Null}" Header="item2">
-                    <Grid/>
-                </phone:PivotItem>
-                <phone:PivotItem CacheMode="{x:Null}" Header="item3">
-                    <Grid/>
-                </phone:PivotItem>
-                <phone:PivotItem CacheMode="{x:Null}" Header="item4">
-                    <Grid/>
-                </phone:PivotItem>
-            </phone:Pivot>
-
-        </StackPanel>
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,132,24,-132">
-            <TextBlock Text="Navigate to 2nd page with data" HorizontalAlignment="Center"
-                 VerticalAlignment="Center" Padding="0 34"              
-         ManipulationStarted="TextBlock_ManipulationStarted"/>
-        </Grid>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28"/>
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,132,24,-132"/>
 
         <!--ContentPanel - 在此处放置其他内容-->
         <Grid x:Name="ContentPanel2" Grid.Row="1" Margin="0,96,24,-24">
             <Grid HorizontalAlignment="Left" Height="399" Margin="63,83,0,0" VerticalAlignment="Top" Width="309" Grid.RowSpan="2">
-                <ProgressBar x:Name="progressBar"  IsIndeterminate="True" HorizontalAlignment="Left" Height="14" Margin="10,73,-29,0" VerticalAlignment="Top" Width="328"/>
+                <!-- <ProgressBar x:Name="progressBar"  IsIndeterminate="True" HorizontalAlignment="Left" Height="14" Margin="10,73,-29,0" VerticalAlignment="Top" Width="328"/>-->
             </Grid>
             <TextBlock x:Name="hideText" Visibility="Collapsed" HorizontalAlignment="Left" Margin="32,5,0,0" TextWrapping="Wrap" Text="TextBlock121212121" VerticalAlignment="Top" RenderTransformOrigin="0.366,-0.37"/>
             <Grid.RowDefinitions>
@@ -80,9 +60,9 @@
             </Grid.ColumnDefinitions>
 
         </Grid>
-        <HyperlinkButton Content="Pivot Application Example" Height="57" HorizontalAlignment="Left" Margin="49,116,0,0" Name="hyperlinkButton1" VerticalAlignment="Top" Width="383" NavigateUri="/PivotPage1.xaml"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="304,61,0,0" VerticalAlignment="Top" Height="102" Width="128" Grid.Row="1" RenderTransformOrigin="0.594,0.745" Click="Button_Click"/>
-
+        <Button x:Name="startButton" Content="BUTTON" HorizontalAlignment="Left" Margin="88,77,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_1" Height="81" Width="325"/>
+        <ProgressBar x:Name="progressBar"  IsIndeterminate="True" HorizontalAlignment="Left" Height="14" Margin="10,273,-29,0" VerticalAlignment="Top" Width="328"/>
+        <TextBlock x:Name="waitInfo" Text="正 在 加 载..." Height="100" FontSize="30" Visibility="Collapsed" HorizontalAlignment="Center"/>
 
         <!--取消注释，以显示对齐网格，从而帮助确保
             控件在公用边界上对齐。图像在系统栏中显示时的
@@ -117,4 +97,3 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
 </phone:PhoneApplicationPage>
-    

@@ -10,36 +10,43 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-
+using System.Threading.Tasks;
 using PM25onWinPhone.Utils;
 using Entity;
 using Utils;
+using Controls;
 
 namespace WindowsProject
 {
     public partial class Sixth : PhoneApplicationPage
     {
-       
+        static Dictionary<int, List<DataForBinding>> hashMap = new Dictionary<int, List<DataForBinding>>();
+        AllData allData = AllData.getAllData();
+        List<string> cityLists =  new List<string>();
+        static int cityCount = 0;
         public const int PageWidth = 480;
         SharedNetwork network = SharedNetwork.sharedNetwork();
         GetPersons personInst = GetPersons.getPersonInst();
+        LockPage lockPage = LockPage.getLockPageInst();
         public Sixth()
-        {  
-  
-            //创建三个页面列表  
+        {
+            cityCount = allData.getHashMap().Count();
+            //创建页面列表  
             this.PageList = new List<UserControl>()   
                 {   
                     new WindowsPhoneControl5() { IsEnabled = false },   
-                    new WindowsPhoneControl2() { IsEnabled = false },   
-                    new WindowsPhoneControl3() { IsEnabled = false },
-                    new WindowsPhoneControl1() { IsEnabled = false }   
+                    new WindowsPhoneControl4() { IsEnabled = false },   
+                    new WindowsPhoneControl3() { IsEnabled = false }
+                  
                 };  
               
             this.CurrentPageIndex = 0;  
-  
             InitializeComponent();  
-  
-            SupportedOrientations = SupportedPageOrientation.Portrait;  
+            SupportedOrientations = SupportedPageOrientation.Portrait;
+           // cityLists =
+           
+          
+
         }  
   
         /// <summary>  
@@ -52,50 +59,95 @@ namespace WindowsProject
         /// </summary>  
         protected int CurrentPageIndex { get; set; }  
   
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)  
+        private  void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)  
         {
-            SharedNetwork network = SharedNetwork.sharedNetwork();
-
+           SharedNetwork network = SharedNetwork.sharedNetwork();
+        // await network.initCites();
+           // if(allData.getStationList().Count == 0)
+           //    await getAllData();
             var frame = (PhoneApplicationFrame)Application.Current.RootVisual;  
-            frame.Width = PageWidth * 3;  
-  
+            frame.Width = PageWidth * 3;
+            System.Diagnostics.Debug.WriteLine("###############" + allData.getHashMap().Count());
             //载入panoramictitle控件  
            // var title = new PanoramicTitle();  
   
           // this.TitlePanel.Children.Add("ShangHai");  
+           
   
             this.LoadPages();  
-        }  
-  
+        }
+/*
+        async Task getAllData()
+        {
+            GetPersons personInst = GetPersons.getPersonInst();
+            SharedNetwork network = SharedNetwork.sharedNetwork();
+            LockPage lockPage = LockPage.getLockPageInst();
+            lockPage.Canchange = false;
+   
+            int i = 1;
+            cityLists.Add("上海市");
+            cityLists.Add("南京市");
+            cityLists.Add("深圳市");
+            cityLists.Add("西安市");
+
+         
+           // if(cityLists != null)
+            foreach (string cityName in cityLists)
+            {
+     
+                await network.getSationAir(cityName);
+                await network.getCityAir(cityName);
+
+               // List<string> testList = new List<string>();
+
+                System.Diagnostics.Debug.WriteLine("testing..");
+                System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data[0].PositionName);
+                System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data.Count());
+
+                List<DataForBinding> dataBindingList1 = new List<DataForBinding>();
+
+
+                dataBindingList1.Add(new DataForBinding("AQI: ", network.theCityAir.data.AQI));
+                dataBindingList1.Add(new DataForBinding("Area: ", network.theCityAir.data.Area));
+                dataBindingList1.Add(new DataForBinding("cityid: ", network.theCityAir.data.cityid));
+                dataBindingList1.Add(new DataForBinding("CO: ", network.theCityAir.data.CO));
+                dataBindingList1.Add(new DataForBinding("NO2: ", network.theCityAir.data.NO2));
+                dataBindingList1.Add(new DataForBinding("O3: ", network.theCityAir.data.O3));
+                dataBindingList1.Add(new DataForBinding("PM10: ", network.theCityAir.data.PM10));
+                dataBindingList1.Add(new DataForBinding("PM2_5: ", network.theCityAir.data.PM2_5));
+                dataBindingList1.Add(new DataForBinding("PrimaryPollutant: ", network.theCityAir.data.PrimaryPollutant));
+                dataBindingList1.Add(new DataForBinding("SO2: ", network.theCityAir.data.SO2));
+                dataBindingList1.Add(new DataForBinding("Unheathful: ", network.theCityAir.data.Unheathful));
+                dataBindingList1.Add(new DataForBinding("Quality: ", network.theCityAir.data.Quality));
+                hashMap.Add(i, dataBindingList1);
+                allData.addAvgData(i, dataBindingList1);
+                i++;
+            }
+
+            System.Diagnostics.Debug.WriteLine("`````````````````````````````````````"+allData.getHashMap().Count());
+            //progressBar.Visibility = Visibility.Collapsed;
+
+            lockPage.Canchange = true;
+
+            // CityListBox.ItemsSource = network.cityStaionsAir.data;
+
+            
+        }
+      
+        */
         private void LoadPages()  
         {  
             this.PanoramicGrid.Children.Clear();
             personInst.newList();
             int index = CurrentPageIndex + 1;
+            personInst.addPersons(new Person("AndyAndytongji", "MgeeAndy", index));
+            personInst.addPersons(new Person("AndyAndy", "MgeeAndyongong", index));
+            personInst.addPersons(new Person("AndyAndy", "MgeeAndy", index));
+            personInst.addPersons(new Person("AndyAndy", "MgeeAndy", index));
             personInst.addPersons(new Person("Andy", "Mgee", index));
             personInst.addPersons(new Person("Andy", "Mgee", index));
             personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Andy", "Mgee", index));
-            personInst.addPersons(new Person("Wang", "Mgee", index));
-            personInst.addPersons(new Person("Wang", "Mgee", index));
-            
- //           network.getCityAir("上海市");
-           // CityAir theCityAir = network.theCityAir;
+            personInst.addPersons(new Person("Andy12213121313", "Mgee", index)); 
             personInst.City = "City" +" "+index;
   
             //滑dao第一页再向左滑动  
@@ -142,13 +194,17 @@ namespace WindowsProject
         }  
   
         private void PhoneApplicationPage_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)  
-        {  
+        {
+            if (!lockPage.Canchange)
+                return;
+            int cityIndex = allData.CityIndex;
             if (e.TotalManipulation.Translation.X >= 100)
             {
                 if (this.CurrentPageIndex == 0)
                 {
                     //MessageBox.Show("now is first item");
                     CurrentPageIndex = 2;
+                  
                     this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
                     this.PageChangeAnimation.Begin();
                     this.LoadPages();
@@ -162,6 +218,7 @@ namespace WindowsProject
                 else 
                 {
                     CurrentPageIndex -= 1;
+                  
                     this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
                     this.PageChangeAnimation.Begin();
                     this.LoadPages();
@@ -176,6 +233,15 @@ namespace WindowsProject
 
                   //this.ContentPanel.Children.Add(UserControlList[index]);
                 }
+
+                cityIndex -= 1;
+                if (cityIndex < 0)
+                {
+                    cityIndex = cityCount - 1;
+                    if (cityIndex < 0)
+                        cityIndex = 0;
+                }
+                    
             }
             else if (e.TotalManipulation.Translation.X <= -100)
             {
@@ -183,6 +249,7 @@ namespace WindowsProject
                 {
                     //MessageBox.Show("now is end item");
                     CurrentPageIndex = 0;
+                  
                     this.SlideTitleDoubleAnimation.To = this.CurrentPageIndex * PageWidth / 2 * (-1);
                     this.PageChangeAnimation.Begin();
                     this.LoadPages();
@@ -207,7 +274,15 @@ namespace WindowsProject
 
                     this.PageChangeAnimation.Begin();
                 }
+
+                cityIndex += 1;
+                if (cityIndex >= cityCount)
+                    cityIndex = 0;
             }
+
+            System.Diagnostics.Debug.WriteLine("-=-=-=-=-=-=-= " + cityIndex);
+            allData.CityIndex = cityIndex;
+         
            /* if (e.OriginalSource is Panel)  
             {  
                 if (e.TotalManipulation.Translation.X < 0)  
@@ -259,6 +334,11 @@ namespace WindowsProject
   
                 //this.TitleTranslate.X = e.CumulativeManipulation.Translation.X / 2 - (this.CurrentPageIndex * PageWidth / 2);  
             }  
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/AddCity.xaml", UriKind.Relative));
         }  
     }
 }

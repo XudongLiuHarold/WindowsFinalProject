@@ -9,6 +9,7 @@ namespace WindowsProject
 {
     public class GetPersons
     {
+        public static bool canchange = false;
         List<Person> people = null;
         string city = null;
         public static GetPersons persontInst = new GetPersons();
@@ -43,6 +44,19 @@ namespace WindowsProject
             set 
             {
                 city = value;
+            }
+        }
+
+        public bool Canchange
+        {
+            get
+            {
+                return canchange;
+
+            }
+            set
+            {
+                canchange = value;
             }
         }
     }

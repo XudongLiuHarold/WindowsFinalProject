@@ -32,7 +32,7 @@
                 <TranslateTransform x:Name="TitleTranslate" />
             </StackPanel.RenderTransform>
         </StackPanel>
-        
+
 
         <Grid x:Name="PanoramicGrid" Grid.Row="1" Grid.Column="0"  
                         ManipulationDelta="PhoneApplicationPage_ManipulationDelta"  
@@ -51,6 +51,7 @@
             </Grid.ColumnDefinitions>
 
         </Grid>
+        <Button Content="+" HorizontalAlignment="Left" Margin="404,696,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

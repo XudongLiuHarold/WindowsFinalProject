@@ -4,31 +4,31 @@ namespace Entity
 {
     class StationData
     {
-        public string AQI;
-        public string CO;
-  public string Measure;
-  public string NO2;
-  public string O3;
-  public string PM10;
-  public string PM2_5;
-  public string PrimaryPollutant;
-  public string Quality;
-  public string SO2;
-  public string TimePoint;
-  public string Unheathful;
-  public string cityid;
-  public string Area;
-  public string Latitude;
-  public string Longitude;
-  public string PositionName;//观测站名字
-  public string O3_24h;
-  public string SO2_24h;
-  public string PM2_5_24h;
-  public string PM10_24h;
-  public string O3_8h_24h;
-  public string O3_8h;
-  public string NO2_24h;
-  public string CO_24h;
+        public string AQI{ get; set; }
+        public string CO{ get; set; }
+       public string Measure{ get; set; }
+       public string NO2{ get; set; }
+       public string O3{ get; set; }
+       public string PM10{ get; set; }
+       public string PM2_5{ get; set; }
+       public string PrimaryPollutant { get; set; }
+       public string Quality { get; set; }
+       public string SO2 { get; set; }
+       public string TimePoint { get; set; }
+       public string Unheathful { get; set; }
+       public string cityid { get; set; }
+       public string Area { get; set; }
+       public string Latitude { get; set; }
+       public string Longitude { get; set; }
+       public string PositionName{ get; set; }//观测站名字
+       public string O3_24h { get; set; }
+       public string SO2_24h { get; set; }
+       public string PM2_5_24h { get; set; }
+       public string PM10_24h { get; set; }
+       public string O3_8h_24h { get; set; }
+       public string O3_8h { get; set; }
+       public string NO2_24h { get; set; }
+       public string CO_24h { get; set; }
 
     }
 

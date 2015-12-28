@@ -3,59 +3,76 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot" Background="Bisque" Margin="0,0,0,-23">
-        <StackPanel Grid.Row="0" Margin="2,0,10,29">
-            <TextBlock x:Name="title" Text="ShangHai" FontSize="60" TextAlignment="Center" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}" Margin="0,0,-0,-23">
+        <StackPanel Grid.Row="0" Margin="10,0,2,39">
+            <TextBlock x:Name="title" Text="" FontSize="60" TextAlignment="Center" Margin="0,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="95"/>
             <!--<TextBlock Text="我的应用程序" Style="{StaticResource PhoneTextNormalStyle}"/>-->
+            <ProgressBar x:Name="progressBar"  IsIndeterminate="True" HorizontalAlignment="Left" Height="14" Margin="10,73,-29,0" VerticalAlignment="Top" Width="328"/>
+            <TextBlock x:Name="pm_value" HorizontalAlignment="Center" Text="正 在 加 载..."/>
         </StackPanel>
-
-        <ListBox x:Name="PeopleListBox" SelectionChanged="PeopleListBox_SelectionChanged" Margin="0,110,0,0">
+        <ListBox x:Name="CityListBox" SelectionMode="Single" ScrollViewer.HorizontalScrollBarVisibility="Visible" 
+                 ScrollViewer.VerticalScrollBarVisibility = "Disabled" Margin="0.115,120,11.462,570" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <ListBox.RenderTransform>
+                <CompositeTransform SkewX="1.26" TranslateX="1.1"/>
+            </ListBox.RenderTransform>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0" Content="{Binding FirstName}" />
-                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="{Binding LastName}" />
-                        <Rectangle Grid.Column="2" Width="36" Height="36" Fill="Red" />
+                        <Grid Margin="10" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Left"  Text="{Binding PositionName}"></TextBlock>
+                            <TextBlock  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Text="AQI: "></TextBlock>
+                            <TextBlock  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Text="{Binding AQI}"></TextBlock>
+                            <!-- <TextBlock Width="50" Grid.Row="1" Text="PM2.5: "></TextBlock>-->
+                            <TextBlock  Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Text="{Binding Quality}"></TextBlock>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <ListBox x:Name="CityListBox1" SelectionChanged="CityListBox_SelectionChanged" Margin="0,242,10,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <!-- <ColumnDefinition Width="150"/> -->
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Right" Text="{Binding indexName}" />
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap"  Text="{Binding indexValue}" />
+                        <!--<TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Age}" />-->
+                    </Grid>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <!-- 以下为从Page2 页面按Back 按键跳回MainPage 时的效果-->
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:SwivelTransition Mode="FullScreenIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <!-- 以下为从Page2 页面跳回MainPage 时的效果-->
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:SwivelTransition Mode="FullScreenIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <!-- 以下为从MainPage页按Back按键跳出（程序退出）时的效果-->
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <!-- 以下为从MainPage 跳转到Page2 时的效果-->
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:SlideTransition Mode="SlideLeftFadeOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
+
 </UserControl>

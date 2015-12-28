@@ -286,6 +286,7 @@ namespace Utils
             request.Method = "GET";
             try
             {
+             
                 using (var response = (HttpWebResponse)(await Task<WebResponse>.Factory.FromAsync(request.BeginGetResponse, request.EndGetResponse, null)))
                 {
                     using (Stream stream = response.GetResponseStream())
@@ -391,6 +392,7 @@ namespace Utils
             if (theCity != null)
             {
                 interfaceFlag = 3;
+
                 System.Diagnostics.Debug.WriteLine(PMURL.GetSitesAirByCityId1 + theCity.cityid);
                 await sendRequest(PMURL.GetSitesAirByCityId1 + theCity.cityid);
             }

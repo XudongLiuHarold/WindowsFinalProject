@@ -8,11 +8,17 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using WindowsProject.Resources;
 using Utils;
+using Dataset;
+using Controls;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WindowsProject
 {
     public partial class App : Application
     {
+        AllData allData = AllData.getAllData();
+        List<string> cityLists = new List<string>();
         /// <summary>
         ///提供对电话应用程序的根框架的轻松访问。
         /// </summary>
@@ -55,6 +61,28 @@ namespace WindowsProject
                 // 并且消耗电池电量。
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+           /* string DBConnectionString = "Data Source=isostore:/MyDataContext.sdf";
+            using (MyDataContext db = new MyDataContext(DBConnectionString))
+            {
+               if (db.DatabaseExists() == false)
+                {
+                    System.Diagnostics.Debug.WriteLine("insert into database121212");
+                  db.CreateDatabase();
+
+                    db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = "上海市" });
+                    db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = "长春市" });
+                    db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = "长沙市" });
+                    db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = "大连市" });
+                    db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = "大理市" });
+                    
+                    db.SubmitChanges();
+               }
+               System.Diagnostics.Debug.WriteLine("insert into database");
+            }
+            //SharedNetwork network = SharedNetwork.sharedNetwork();
+            // await network.initCites();
+           
+      */
 
         }
 
@@ -62,8 +90,99 @@ namespace WindowsProject
         // 此代码在重新激活应用程序时不执行
         private async void Application_Launching(object sender, LaunchingEventArgs e)
         {
+          SharedNetwork network = SharedNetwork.sharedNetwork();
+          await network.initCites();
+    // /*
+          string DBConnectionString = "Data Source=isostore:/MyDataContext.sdf";
+          using (MyDataContext db = new MyDataContext(DBConnectionString))
+          {
+              if (db.DatabaseExists() == false)
+              {
+                  //db.DeleteDatabase();
+                  db.CreateDatabase();
+                  for (int i = 0; i < network.Cites.Count; i++)
+                  {
+                      string temp = network.Cites[i].CityName;
+                      db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = temp + "" });
+                      System.Diagnostics.Debug.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&" + temp);
+                      db.SubmitChanges();
+                  }
+              }
+            /*  else {
+                  for (int i = 0; i < network.Cites.Count; i++)
+                  {
+                      string temp = network.Cites[i].CityName;
+                      db.ColCityTable.InsertOnSubmit(new ColCity { ColCityName = temp + "" });
+                      System.Diagnostics.Debug.WriteLine("&&&&&&&&&&&&&&&&&&&&&&&&&&" + temp);
+                      db.SubmitChanges();
+                  }
+              }*/
+            
+           
+          }
+     // */
+         // string temp = network.Cites[0].CityName;
+         
+          System.Diagnostics.Debug.WriteLine("##################################################################"+network.Cites.Count);
+        }
+
+        async Task getAllData()
+        {
+            GetPersons personInst = GetPersons.getPersonInst();
             SharedNetwork network = SharedNetwork.sharedNetwork();
-            await network.initCites();
+            LockPage lockPage = LockPage.getLockPageInst();
+            // lockPage.Canchange = false;
+            int i = 0;
+            cityLists.Add("上海市");
+            cityLists.Add("南京市");
+            cityLists.Add("深圳市");
+            cityLists.Add("西安市");
+            cityLists.Add("庆阳市");
+
+
+            // if(cityLists != null)
+            foreach (string cityName in cityLists)
+            {
+
+                await network.getSationAir(cityName);
+                await network.getCityAir(cityName);
+
+                // List<string> testList = new List<string>();
+
+                System.Diagnostics.Debug.WriteLine("testing..");
+                System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data[0].PositionName);
+               // System.Diagnostics.Debug.WriteLine(network.cityStaionsAir.data.Count());
+
+                List<DataForBinding> dataBindingList1 = new List<DataForBinding>();
+
+
+                dataBindingList1.Add(new DataForBinding("AQI: ", network.theCityAir.data.AQI));
+                dataBindingList1.Add(new DataForBinding("Area: ", network.theCityAir.data.Area));
+                dataBindingList1.Add(new DataForBinding("cityid: ", network.theCityAir.data.cityid));
+                dataBindingList1.Add(new DataForBinding("CO: ", network.theCityAir.data.CO));
+                dataBindingList1.Add(new DataForBinding("NO2: ", network.theCityAir.data.NO2));
+                dataBindingList1.Add(new DataForBinding("O3: ", network.theCityAir.data.O3));
+                dataBindingList1.Add(new DataForBinding("PM10: ", network.theCityAir.data.PM10));
+                dataBindingList1.Add(new DataForBinding("PM2_5: ", network.theCityAir.data.PM2_5));
+                dataBindingList1.Add(new DataForBinding("PrimaryPollutant: ", network.theCityAir.data.PrimaryPollutant));
+                dataBindingList1.Add(new DataForBinding("SO2: ", network.theCityAir.data.SO2));
+                dataBindingList1.Add(new DataForBinding("Unheathful: ", network.theCityAir.data.Unheathful));
+                dataBindingList1.Add(new DataForBinding("Quality: ", network.theCityAir.data.Quality));
+                // hashMap.Add(i, dataBindingList1);
+                allData.addAvgData(i, dataBindingList1);
+                allData.addStationData(network.cityStaionsAir.data);
+                allData.addAvgData(network.theCityAir.data);
+                i++;
+            }
+
+            System.Diagnostics.Debug.WriteLine("@@@```````````````````````````````" + allData.getHashMap().Count);
+            //progressBar.Visibility = Visibility.Collapsed;
+
+            // lockPage.Canchange = true;
+
+            // CityListBox.ItemsSource = network.cityStaionsAir.data;
+
+
         }
 
         // 激活应用程序(置于前台)时执行的代码

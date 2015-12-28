@@ -4,7 +4,7 @@ namespace Entity
 {
     class cityData
     {
-        public string cityid;
+        public string cityid{get;set;}
         public string CityName;
         public string provinceId;
     }
